@@ -1,6 +1,5 @@
-default: https://karlstolley.com/
-wd: https://courses.karlstolley.com/wd/
-hci: https://courses.karlstolley.com/hci/
-fwd: https://courses.karlstolley.com/fwd/
-gh: https://github.com/karlstolley/
-app: https://courses.karlstolley.com/app/
+# Fill in your slugs (`gh`) and URLs (https://github.com/) below, one per line
+# Be sure always to include a default URL
+
+default: https://github.com/karlstolley/sharty
+gh: https://github.com/
