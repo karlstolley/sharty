@@ -20,6 +20,7 @@ if (typeof(urls.default) === 'undefined') {
 app.get(/\/[a-z0-9-]+$/, (req, res) => {
   let slug = req.url.substring(1); // trim initial slash
   let destination = urls[slug];
+  // If the slug/destination doesn't exist, redirect to the default
   if (typeof(destination) === 'undefined') {
     destination = urls.default;
   }
