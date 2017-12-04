@@ -7,7 +7,7 @@ const app = express();
 let urls = yaml.safeLoad(fs.readFileSync('./urls.yaml'));
 
 app.get(/\/[a-z0-9-]+$/, (req, res) => {
-  res.send(`Requested: ${req.url}`);
+  res.send(`Requested ${req.url}, send to ${urls[req.url.substring(1)]}`);
 })
 
 app.listen(3000);
