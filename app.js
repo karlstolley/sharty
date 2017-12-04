@@ -13,8 +13,8 @@ if (typeof(urls.default) === 'undefined') {
 
 // Match any slug of lowercase letters, numbers, or the hyphen
 app.get(/\/[a-z0-9-]+$/, (req, res) => {
-  let short = req.url.substring(1); // trim initial slash
-  let destination = urls[short];
+  let slug = req.url.substring(1); // trim initial slash
+  let destination = urls[slug];
   if (typeof(destination) === 'undefined') {
     destination = urls.default;
   }
