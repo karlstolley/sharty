@@ -3,8 +3,13 @@ const yaml = require('js-yaml');
 const express = require('express');
 const app = express();
 
-// Using blocking readFileSync to make sure all URLs loaded
-let urls = yaml.safeLoad(fs.readFileSync('./urls.yaml'));
+const yaml_file = './urls.yaml'
+
+let urls = yaml.safeLoad(fs.readFileSync(yaml_file));
+
+ fs.watch(yaml_file, (event, file) => {
+   urls = yaml.safeLoad(fs.readFileSync(file));
+ });
 
 // Check for a default route; set one if one does not exist
 if (typeof(urls.default) === 'undefined') {
