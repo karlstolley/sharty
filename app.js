@@ -7,7 +7,12 @@ const app = express();
 let urls = yaml.safeLoad(fs.readFileSync('./urls.yaml'));
 
 app.get(/\/[a-z0-9-]+$/, (req, res) => {
-  res.send(`Requested ${req.url}, send to ${urls[req.url.substring(1)]}`);
+  let short = req.url.substring(1); // trim initial slash
+  let destination = urls[short];
+  if (typeof(destination) === 'undefined') {
+    destination = urls.default;
+  }
+  res.redirect(301,destination);
 })
 
 app.listen(3000);
