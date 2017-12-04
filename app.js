@@ -6,17 +6,21 @@ const app = express();
 // TODO: Less brittle path to the YAML file
 const yaml_file = './urls.yaml'
 
+// Check for a default route; set one if one does not exist
+function checkDefaultURL() {
+  if (typeof(urls.default) === 'undefined') {
+    urls.default = 'https://github.com/karlstolley/sharty'
+  }
+}
+
 let urls = yaml.safeLoad(fs.readFileSync(yaml_file));
+checkDefaultURL();
 
 fs.watch(yaml_file, (event, file) => {
 // TODO: Is readFileSync the best choice here?
   urls = yaml.safeLoad(fs.readFileSync(file));
+  checkDefaultURL();
 });
-
-// Check for a default route; set one if one does not exist
-if (typeof(urls.default) === 'undefined') {
-  urls.default = 'https://github.com/karlstolley/sharty'
-}
 
 // Match any slug of lowercase letters, numbers, or the hyphen
 // TODO: Handle an erroneous trailing slash
