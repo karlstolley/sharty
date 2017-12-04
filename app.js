@@ -6,4 +6,8 @@ const app = express();
 // Using blocking readFileSync to make sure all URLs loaded
 let urls = yaml.safeLoad(fs.readFileSync('./urls.yaml'));
 
-console.log(urls.default);
+app.get(/\/[a-z0-9-]+$/, (req, res) => {
+  res.send(`Requested: ${req.url}`);
+})
+
+app.listen(3000);
