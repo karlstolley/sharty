@@ -3,13 +3,15 @@ const yaml = require('js-yaml');
 const express = require('express');
 const app = express();
 
+// TODO: Less brittle path to the YAML file
 const yaml_file = './urls.yaml'
 
 let urls = yaml.safeLoad(fs.readFileSync(yaml_file));
 
- fs.watch(yaml_file, (event, file) => {
-   urls = yaml.safeLoad(fs.readFileSync(file));
- });
+fs.watch(yaml_file, (event, file) => {
+// TODO: Is readFileSync the best choice here?
+  urls = yaml.safeLoad(fs.readFileSync(file));
+});
 
 // Check for a default route; set one if one does not exist
 if (typeof(urls.default) === 'undefined') {
@@ -17,6 +19,7 @@ if (typeof(urls.default) === 'undefined') {
 }
 
 // Match any slug of lowercase letters, numbers, or the hyphen
+// TODO: Handle an erroneous trailing slash
 app.get(/\/[a-z0-9-]+$/, (req, res) => {
   let slug = req.url.substring(1); // trim initial slash
   let destination = urls[slug];
