@@ -24,7 +24,7 @@ fs.watch(yaml_file, (event, file) => {
 
 // Match any slug of lowercase letters, numbers, or the hyphen
 app.get(/\/[a-z0-9-]+(\/?)$/, (req, res) => {
-  let slug = req.baseUrl.substring(1); // trim initial slash
+  let slug = req.url.match(/[a-z0-9-]+/); // return just the slug value
   let destination = urls[slug];
   // If the slug/destination doesn't exist, redirect to the default
   if (typeof(destination) === 'undefined') {
