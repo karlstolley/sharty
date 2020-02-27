@@ -3,8 +3,8 @@ const yaml = require('js-yaml');
 const express = require('express');
 const app = express();
 
-// TODO: Less brittle path to the YAML file
-const yaml_file = './urls.yaml'
+const yaml_file = `${__dirname}/urls.yaml`;
+// console.log(yaml_file);
 
 // Check for a default route; set one if one does not exist
 function checkDefaultURL() {
