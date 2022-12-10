@@ -17,7 +17,7 @@
   },
   "homepage": "https://github.com/karlstolley/sharty#readme",
   "dependencies": {
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "js-yaml": "^3.13.1"
   }
 }
